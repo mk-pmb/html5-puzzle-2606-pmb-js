@@ -1,0 +1,32 @@
+{ "name": "html5-puzzle-2606-pmb",
+  "version": "0.0.0",
+  "description": "A simple minimalistic HTML5 puzzle game. Basically just an element-dragging demo.",
+  "keywords": [],
+
+  "author": "M.K. (https://github.com/mk-pmb)",
+  "homepage": "https://github.com/mk-pmb/html5-puzzle-2606-pmb-js/#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mk-pmb/html5-puzzle-2606-pmb-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mk-pmb/html5-puzzle-2606-pmb-js/issues"
+  },
+  "contributors": [],
+
+  "private": true, "license": "ISC",
+
+  "main": "index.mjs",
+  "scripts": { "test": "elp && nodejs test/all.mjs" },
+  "directories": { "test": "test" },
+  "eslintConfig": { "extends": "nodejs-pmb",
+    "env": { "browser": true }
+  },
+
+  "dependencies": {},
+  "devDependencies": {
+  },
+
+
+  "engines": { "npm": ">=7.0.0", "node": ">=24.0.0" }
+}
