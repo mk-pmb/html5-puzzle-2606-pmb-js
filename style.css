@@ -1,0 +1,100 @@
+﻿@charset "UTF-8";
+/* -*- coding: UTF-8, tab-width: 2 -*- */
+
+.puzzle-area .corner b,
+.fill {
+  display: block; margin: 0;
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+}
+
+body > input.puzzle-keycatcher { position: absolute; top: 0; left: -200em; }
+
+.puzzle-area {
+  position: relative;
+  display: inline-block;
+  --pa-border-width: 1px;
+  --pa-border-style: solid;
+  --pa-border-color: slategray;
+  --pa-bgc: darkslategray;
+}
+
+.puzzle-area .toolbar,
+.puzzle-area {
+  border: var(--pa-border-width) var(--pa-border-style) var(--pa-border-color);
+  background-color: var(--pa-bgc);
+}
+
+.puzzle-area .viewport {
+  display: block;
+  position: relative;
+  overflow: scroll;
+  resize: both;
+}
+.puzzle-area .viewport:not([style]) { max-width: 95vw; max-height: 95vh; }
+
+.puzzle-area .viewbox { display: block; position: relative; overflow: hidden; }
+.puzzle-area .viewbox .origin { display: block; position: relative; }
+
+.puzzle-area var { font: inherit; }
+.puzzle-area p {
+  display: block; position: absolute; padding: 0; margin: 0; user-select: none;
+  transform-origin: center; transition: transform 0.25s;
+}
+
+.puzzle-area.moving, .puzzle-area.moving p { cursor: grabbing; }
+.puzzle-area.moving p { opacity: 0.75; }
+.puzzle-area.moving p:last-of-type() { opacity: 1; }
+.puzzle-area.moving p { cursor: grabbing; }
+
+.puzzle-area .corner,
+.puzzle-area .mostRecentPieceTracer,
+.puzzle-area .fill { pointer-events: none; }
+.puzzle-area p .fill.inner-frame { border: 1px solid rgba(255,255,255,.6); }
+
+.puzzle-area p:before {
+  display: block; margin: 10px;
+  font-size: 10px;
+  content: attr(w) "\200B ×\200B " attr(d) "\200B ×\200B " attr(h) " mm"
+    " =\A0 " attr(volume-l) "\A0 L, " attr(floor-sqcm) "\A0 cm²";
+  white-space: pre-line;
+  text-align: center;
+}
+
+.puzzle-area .corner {
+  display: block; position: absolute; overflow: hidden;
+  margin: 0; /* <-- Set negative for outside corners.
+    Caveat: The length still is calculated for the outer edge of the corner
+      marks, giving a too-short inner length. */
+  border: 0 solid transparent;
+}
+.puzzle-area .corner b {
+  border-color: inherit;
+  border-style: inherit;
+  border-width: 2px;
+}
+
+.puzzle-area .toolbar {
+  display: block; position: absolute; top: 0; padding: 0.4em;
+  border-top-width: 0; background-color: rgba(0,0,0,0.5);
+}
+.puzzle-area.toolbar-left .toolbar { left: 0; border-left-width: 0; }
+.puzzle-area.toolbar-right .toolbar { right: 0; border-right-width: 0; }
+.puzzle-area.toolbar-left [data-mthd="moveToolbarLeft"],
+.puzzle-area.toolbar-right [data-mthd="moveToolbarRight"] { display: none; }
+
+.puzzle-area .mostRecentPieceTracer { position: relative; }
+.puzzle-area .origin .shadow { margin: -5px; border: 4px solid black; }
+.puzzle-area .origin .halo { margin: -4px; border: 2px dotted white; }
+
+
+
+
+
+
+
+
+
+
+
+
+/* scroll */

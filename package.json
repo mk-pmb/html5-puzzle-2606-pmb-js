@@ -1,5 +1,5 @@
 { "name": "html5-puzzle-2606-pmb",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A simple minimalistic HTML5 puzzle game. Basically just an element-dragging demo.",
   "keywords": [],
 
@@ -23,8 +23,14 @@
     "env": { "browser": true }
   },
 
-  "dependencies": {},
+  "dependencies": {
+    "eslint-pretty-pmb": "^1.0.7"
+  },
   "devDependencies": {
+    "dom80-pmb": "^0.1.12",
+    "eslint-config-nodejs-pmb": "^0.3.14",
+    "eslint-plugin-json-light-pmb": "^1.0.7",
+    "eslint-plugin-n": "^17.16.2"
   },
 
 

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Puzzle Demo</title>
+  <meta name="viewport" content="width=device-width">
+  <!-- meta http-equiv="refresh" content="2" -->
+  <meta http-equiv="Content-Script-Type" content="text/javascript">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <link rel="stylesheet" type="text/css" href="../style.css">
+  <style>
+    body { background-color: black; }
+    p { background-color: burlywood; }
+    p.shelf { background-color: peru; }
+    p.shelf .corner { border-color: darkred; }
+    p[bm="o"] { background-color: wheat; }
+    p[d^="30"], p[d^="31"] { background-color: darkorange; }
+    p[d^="32"], p[d^="33"] { background-color: orange; }
+    p[d="340"] { background-color: lightgreen; }
+    p[d="350"] { background-color: chartreuse; }
+    p[d="370"] { background-color: tomato; } /* 35+(3*370)+35 = 1180  */
+    p[bm] .inner-frame { border: 4px dotted rgba(0,0,0,.6) !important; }
+    p[lid="locking"] .inner-frame { border-style: solid !important; }
+    p[lid="hinged"] .inner-frame { border-top-style: solid !important; }
+  </style>
+</head><body class="puzzle-autorun">
+
+<div class="puzzle-area" data-camera="top"
+  data-scale="0.2"
+  data-viewbox="0 0 10e3 5e3"
+  >
+  <var class="shelf" w=480 d=1180 h=5 data-corner-len=35>
+    <var z=300 x=300>
+      <p></p>
+      <var x="_+800"></var>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+    </var>
+  </var>
+
+  <var n=20>
+
+    <var bm="o" lid="locking" z=2000>
+      <var d=350></var>
+      <p w=420 h=330 x=300></p>
+      <p w=670 h=350 x="_+600"></p>
+      <p w=520 h=330 x="_+800"></p>
+      <p w=410 d=310 h=300 x="_+700"></p>
+      <p w=700 d=340 h=340 x="_+600" bgc="yellow"></p>
+      <p w=590 d=315 h=315 x="_+900"></p>
+      <p w=420 d=750 h=400 x="_+800"></p>
+    </var>
+
+    <var z=2500 x="_+550">
+      <var bm="t">
+        <p w=406 d=322 h=290 x=300 lid="hinged"></p>
+        <var lid="locking" d=350></var>
+        <p w=615 h=340></p>
+        <p w=420 h=350 x="_+800"></p>
+      </var>
+
+      <var bm="bh">
+        <p w=397 d=320 h=288 lid="hinged"></p>
+      </var>
+
+      <var bm="hb">
+        <p w=400 d=320 h=287 lid="hinged"></p>
+      </var>
+
+      <var bm="pra">
+        <p w=405 d=330 h=300 lid="hinged"></p>
+        <p w=622 d=370 h=322 lid="takeoff"></p>
+      </var>
+    </var>
+
+  </var>
+
+</div>
+
+
+
+
+<script data-jsglobal-dom80-pmb="dom80"
+  src="../node_modules/dom80-pmb/dist/dom80.latest.min.js"></script>
+<script data-jsglobal-dom80-pmb="dom80" url-hint="github pages"
+  src="../../dom80-pmb-js/dist/dom80.latest.min.js"></script>
+<script type="module" src="../index.mjs"></script>
+
+</body></html>
