@@ -1,7 +1,5 @@
 ﻿import EX from './0_base.mjs';
 
-const D = window.dom80;
-
 EX.updateMixin({
 
   clonePieceHotkey: 'c',
@@ -12,6 +10,6 @@ EX.updateMixin({
     EX.updateMostRecentPiece(puzArea, EX.deepCloneDomElem(mrp));
   },
 
-  deepCloneDomElem(el) { return el && el.cloneNode(deeply); },
+  deepCloneDomElem(el) { return el && el.cloneNode(true); },
 
 });

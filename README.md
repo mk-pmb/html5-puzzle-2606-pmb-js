@@ -29,9 +29,9 @@ Hotkeys for the most recent piece:
 
 * `b`: Mark as least recent.
   This is useful if the most recent piece is blocking your view of others.
-* `c`: Clone the piece.
+* `c`: Clone the piece, in the exact same spot.
 * `D` (Shift+`d`): Discard the piece.
-* `r`: Rotate clockwise.
+* `r`: Rotate clockwise around the camera's line of sight.
   * `R` (Shift+`r`): Rotate counter-clockwise.
 
 
@@ -100,15 +100,30 @@ Attributes (all optional):
   Defaults to `n`.
 
 
+### Phantoms
+
+Inside `<div class="puzzle-area">`, `<del>` tags trigger all the preparations
+and calculations that a regular piece would cause, but the resulting piece
+is never added to the puzzle area.
+You can use this to skip a step in a chain where pieces calculate their
+geometry based on their predecessor.
+
+
 ### Attribute inheritance
 
-Inside `<div class="puzzle-area">`, `<var>` tags can be used to set
-attributes for multiple pieces:
+Inside `<div class="puzzle-area">`, `<var>` and `<ins>` tags
+can be used to set attributes for multiple pieces:
 
 * All attributes of empty `<var>` tags
   are used as defaults for all later sibling elements.
 * All attributes of `<var>` tags with elements inside them
   are used as defaults for only their child elements.
+  * `<ins>` with children behaves the same, but first inherits all attributes
+    of the previously inserted piece. After it is fully processed,
+    it also restores the notion of "the previously inserted piece"
+    to what it had been before. This allows sub-chaining in chains where
+    pieces refer to the geometry of their predecessor.
+
 
 
 

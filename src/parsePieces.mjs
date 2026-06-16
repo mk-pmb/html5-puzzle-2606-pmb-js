@@ -17,24 +17,32 @@ EX.updateMixin({
     let curElem;
     let nextElem = origInitElem;
     let tn;
+    let fc;
     // console.debug('parsePieces >>', parElem);
     while (nextElem) {
       curElem = nextElem;
       nextElem = curElem.nextElementSibling;
       parElem.removeChild(curElem);
+      fc = curElem.firstElementChild;
       tn = D.lcTag(curElem);
-      if (tn === 'p') {
+      if ((tn === 'p') || (tn === 'del')) {
         EX.parseOnePuzzlePiece(puzArea, curElem, keptAttr);
       }
       if (tn === 'var') {
         const mergedAttr = { ...keptAttr, ...D.attrDict(curElem) };
-        const ch = curElem.firstElementChild;
-        if (ch) {
-          EX.parsePieces(puzArea, ch, mergedAttr);
+        if (fc) {
+          EX.parsePieces(puzArea, fc, mergedAttr);
         } else {
           // console.debug('Update keptAttr for', curElem, mergedAttr);
           keptAttr = mergedAttr;
         }
+      }
+      if ((tn === 'ins') && fc) {
+        const backupPreviousPiece = EX.previousPiece;
+        EX.parsePieces(puzArea, fc,
+          { ...D.attrDict(EX.previousPiece), ...D.attrDict(curElem) });
+        // eslint-disable-next-line no-param-reassign
+        EX.previousPiece = backupPreviousPiece;
       }
     }
     // console.debug('parsePieces <<', parElem);
@@ -45,7 +53,6 @@ EX.updateMixin({
   parseOnePuzzlePiece(puzArea, curElem, inheritedAttrs) {
     // console.debug('parseOnePuzzlePiece', curElem, inheritedAttrs);
     const piece = curElem;
-    puzArea.refs.pieces.appendChild(piece);
     EX.weakAssignAttributesFromDict(piece, inheritedAttrs);
 
     piece.geom = EX.parseOnePuzzlePieceGeometry(piece);
@@ -53,8 +60,12 @@ EX.updateMixin({
       || doNothing)(piece, puzArea);
 
     assignIf(piece.style, 'backgroundColor', piece.getAttribute('bgc'));
-    piece.appendChild(D.mkTagC('span .fill .inner-frame'));
-    EX.addInsideCornersToElem(puzArea, piece);
+
+    if (D.lcTag(piece) !== 'del') {
+      puzArea.refs.pieces.appendChild(piece);
+      piece.appendChild(D.mkTagC('span .fill .inner-frame'));
+      EX.addInsideCornersToElem(puzArea, piece);
+    }
 
     EX.previousPiece = piece;
   },
